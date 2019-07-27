@@ -2,6 +2,8 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.zip.ZipOutputStream;
+
 public class ZooTests {
 
     @Test
@@ -58,5 +60,56 @@ public class ZooTests {
         zoo.giveHomelessPet(pet);
 
         zoo.getPetNames();
+    }
+
+    @Test
+    public void getPetNames_removeNotPresentElement_EmptyString(){
+        final String expected = "";
+        final Zoo zoo = new Zoo();
+        final Pet pet = new Pet();
+        zoo.takePet(pet);
+
+        final String actual = zoo.getPetNames();
+
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void getPetNames_AddTwoElementsRemoveTree_StringEmpty(){
+        final String expected = "";
+        final Zoo zoo = new Zoo();
+        final Pet pet = new Pet();
+        pet.setName("Fafik");
+        zoo.giveHomelessPet(pet);
+        zoo.giveHomelessPet(pet);
+        zoo.takePet(pet);
+        zoo.takePet(pet);
+        zoo.takePet(pet);
+
+        final String actual = zoo.getPetNames();
+
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Ignore
+    @Test
+    public void testWithTrue(){
+        final Zoo zoo1 = new Zoo();
+        final Zoo zoo2 = new Zoo();
+
+        Assert.assertTrue(ZooEquals(zoo1,zoo2));
+    }
+
+    private boolean ZooEquals(Zoo left, Zoo right){
+        if(left == null && right == null){
+            return true;
+        }
+
+        if(left == null || right == null){
+            return false;
+        }
+
+        //porónuje wszystkie pola po koleii
+        return left.equals(right);
     }
 }

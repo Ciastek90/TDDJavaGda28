@@ -36,8 +36,9 @@ public class Zoo {
         if (pet.getName().length() >= defaultLength) {
             this.petPlaces.add(pet);
         }
-
-        throw new IllegalArgumentException("Imie powinno posiadać minimum " + defaultLength + " znaki");
+        else {
+            throw new IllegalArgumentException("Imie powinno posiadać minimum " + defaultLength + " znaki");
+        }
     }
 
     /**
