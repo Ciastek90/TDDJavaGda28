@@ -75,6 +75,8 @@ public class Pet {
      * @param name Ustawia imię zwierzątka
      */
     public void setName(String name) {
-        this.name = name;
+
+            this.name = name;
+
     }
 }

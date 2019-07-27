@@ -1,7 +1,5 @@
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.rules.ExpectedException;
 
 public class CalculatorTests {
     private static double delta;
@@ -44,5 +42,32 @@ public class CalculatorTests {
         final double actual = Calculator.multiply(5,5);
 
         Assert.assertEquals(expected,actual,delta);
+    }
+
+    @Test
+    public void exception_test_byTryCatch(){
+        try{
+            Calculator.divide(10,0);
+            System.out.println("nie rzucono wyjątku");
+            Assert.fail();
+        }
+        catch (Exception e){
+            System.out.println("Rzucono wyjątek");
+            return;
+        }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void exception_test_byExpectedAnnotation(){
+        Calculator.divide(1,0);
+    }
+
+    @Rule
+    public ExpectedException exceptionHandler = ExpectedException.none();
+
+    @Test
+    public void exception_test_byRule(){
+        exceptionHandler.expect(IllegalArgumentException.class);
+        Calculator.divide(1,0);
     }
 }
