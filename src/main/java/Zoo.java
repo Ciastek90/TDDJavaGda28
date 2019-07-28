@@ -24,9 +24,13 @@ public class Zoo {
     /**
      * @param pet Zwierzątko które zadomowi się w nowym zoo
      */
-    public void giveHomelessPet(Pet pet) {
+    public int giveHomelessPet(Pet pet) {
         if (pet == null) {
             throw new IllegalArgumentException("Nie podawaj niepoprawnych zwierzątek");
+        }
+
+        if(pet.getName() == null){
+            throw new IllegalArgumentException("Imię zwierzątka nie może być null");
         }
 
         if (pet.getName() == "") {
@@ -39,6 +43,8 @@ public class Zoo {
         else {
             throw new IllegalArgumentException("Imie powinno posiadać minimum " + defaultLength + " znaki");
         }
+
+        return 0;
     }
 
     /**
@@ -52,6 +58,7 @@ public class Zoo {
      * @return Zwraca liste wszystkich zwierzątek oddzielonych przecinkami
      */
     public String getPetNames(){
+
         final StringJoiner petNames = new StringJoiner(", ");
 
         for (Pet pet:

@@ -52,6 +52,7 @@ public class ZooTests {
         //Assert.assertEquals(expected.length(),actual.length());
     }
 
+    @Ignore
     @Test(expected = IllegalArgumentException.class)
     public void getPetNames_petWithoutName_IllegalArgumentException(){
         final Zoo zoo = new Zoo();
